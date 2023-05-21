@@ -3,6 +3,10 @@
 <?php require "config.php"; ?>
 
 <?php
+
+if(isset($session['username'])){
+  header("location:index.php");
+}
 // check for the submit
 // take the data and do the query
 // execute the query
@@ -34,6 +38,10 @@ echo $data['email'];
       if(password_verify($password, $data['mypassword'])){
         
         echo "logged in";
+        $_SESSION['username'] = $data['username'];
+        $_session['email'] = $data['email'];
+
+        header("location: index.php");
       }else{
         echo "Incorrect password";
       }
